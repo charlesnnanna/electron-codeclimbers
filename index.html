@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Time Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .app-info {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 16px;
+      color: green;
+    }
+
+    .do-not-disturb {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #ffeb3b;
+      color: #333;
+      display: inline-block;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>CodeClimber VSCode Tracker</h1>
+  <div class="app-info">
+    <p><strong>Current Active Application:</strong> <span id="current-app">Loading...</span></p>
+    <p><strong>Time Spent:</strong> <span id="time-spent">0 seconds</span></p>
+    <progress id="progress-bar" value="0" max="100"></progress>
+  </div>
+
+  <div class="status">
+    <p><strong>Do Not Disturb Status:</strong> <span id="dnd-status">Off</span></p>
+  </div>
+
+  <div class="do-not-disturb">
+    <button id="toggle-dnd">Toggle Do Not Disturb</button>
+  </div>
+
+  <script type="text/javascript" src="renderer.js"></script>
+  
+</body>
+</html>

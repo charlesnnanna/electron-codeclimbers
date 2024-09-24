@@ -1,0 +1,21 @@
+{
+  "name": "my-electron-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^32.1.0"
+  },
+  "dependencies": {
+    "@miniben90/x-win": "^1.10.2",
+    "get-windows": "^9.2.0",
+    "node-addon-api": "^8.1.0"
+  }
+}
