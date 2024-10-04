@@ -1,20 +1,18 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-import { subscribeActiveWindow, unsubscribeActiveWindow, unsubscribeAllActiveWindow } from '@miniben90/x-win';
-// import {activeWindow} from 'get-windows';
+import { subscribeActiveWindow} from '@miniben90/x-win';
+import { exec } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { exec } from 'child_process';
 
 // Get the filename from the module URL
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const scriptPath = path.join(__dirname, '.', 'toggleDnd.scpt')
 const targetApps = ['Games', 'Google Chrome', 'Mail'].join(',')
 
 
 async function executeScript (){
   try {
-    const command = `osascript toggleDnd.scpt "${targetApps}"`;
+    const command = `osascript toggle-notification.scpt "${targetApps}"`;
     await exec(command)
     console.log(`AppleScript Output: ${targetApps}`);
   } catch (error) {
@@ -23,16 +21,16 @@ async function executeScript (){
 }
 
  async function toggleDoNotDisturb(event, data) { 
-  const result = {}
 
+  const result = {}
   try {
     if (data === 'On'){
-      await executeScript(`${scriptPath}`)
+      await executeScript()
       result.status = false
       result.text = 'Off'
     } 
     if (data === 'Off') {
-      await executeScript(`${scriptPath}`)
+      await executeScript()
       result.status = true
       result.text = 'On'
     }
@@ -41,7 +39,6 @@ async function executeScript (){
     console.log(error.message)
   }
   return result
-
   }
 
 app.disableHardwareAcceleration();
@@ -55,8 +52,7 @@ const createWindow = () => {
     },
   });
 
-  const a = subscribeActiveWindow(activeWindow => {
-
+subscribeActiveWindow(activeWindow => {
       const window = activeWindow
       if (window) {
           mainWindow.webContents.send('updateTime', {

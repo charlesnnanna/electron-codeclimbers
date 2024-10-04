@@ -1,5 +1,4 @@
   
-// Receive updates from the main process about the active window
 const progress = document.getElementById('progress-bar')
 const timer = document.getElementById('time-spent')
 const btn = document.getElementById('toggle-dnd')
@@ -50,7 +49,6 @@ class Timer {
 
 const vsCodeTimer = new Timer(timer, progress);
 window.myAPI.updateTime((data) => {
-
   if (data.name === 'Code'){
     vsCodeTimer.start()
   } else{
@@ -63,7 +61,6 @@ btn.addEventListener('click', async (e) => {
   try {
     e.preventDefault()
     const currentStatus = await window.myAPI.toggleDnd(dndStatus.innerText)
-    console.log(currentStatus)
     dndStatus.innerText = currentStatus.text
   } catch (error) {
     console.log(error)
