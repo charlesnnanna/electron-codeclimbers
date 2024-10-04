@@ -5,4 +5,5 @@ contextBridge.exposeInMainWorld('myAPI', {
   chrome: () => process.versions.chrome,
   electron: () => process.versions.electron,
   updateTime: (callback) => ipcRenderer.on('updateTime', (event, value) => callback(value)), // Allow receiving specific events
+  toggleDnd: (data) => ipcRenderer.invoke('toggleDnd', data)
 })
